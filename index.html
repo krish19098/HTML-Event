@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event Planner</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <style>
+        body {
+            padding: 2rem;
+        }
+
+        .card {
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="text-center mb-4">Create New Event</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="numberOfSeats">Number of available seats:</label>
+                                <input type="number" class="form-control" id="numberOfSeats"
+                                    placeholder="Enter number of available seats" />
+                            </div>
+                            <div class="form-group">
+                                <label for="attendeeName1">Name of Attendee 1:</label>
+                                <input type="text" class="form-control" id="attendeeName1"
+                                    placeholder="Enter name of Attendee 1" />
+                            </div>
+                            <div class="form-group">
+                                <label for="attendeeName2">Name of Attendee 2:</label>
+                                <input type="text" class="form-control" id="attendeeName2"
+                                    placeholder="Enter name of Attendee 2" />
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center my-4">Created Events</h2>
+    <div class="container">
+        <div class="row" id="events">
+        </div>
+    </div>
+
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const numberOfSeats = document.querySelector('#numberOfSeats').value;
+            const attendeeName1 = document.querySelector('#attendeeName1').value;
+            const attendeeName2 = document.querySelector('#attendeeName2').value;
+
+            const eventDiv = document.createElement('div');
+            eventDiv.className = 'col-md-4';
+            eventDiv.id = 'eventDiv';
+
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            const cardTitle = document.createElement('h5');
+            cardTitle.className = 'card-title';
+            cardTitle.textContent = 'Event ' + (document.querySelectorAll('#eventDiv').length + 1);
+
+            const cardText = document.createElement('p');
+            cardText.className = 'card-text';
+            cardText.innerHTML =
+                'Number ofavailable seats: ' + numberOfSeats + '<br />' +
+                'Name: <br />' +
+                'Email: <br />' +
+                'Phone No.: <br />' +
+                'Name of Attendee 1: ' + attendeeName1 + '<br />' +
+                'Name of Attendee 2: ' + attendeeName2;
+
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardText);
+            card.appendChild(cardBody);
+            eventDiv.appendChild(card);
+            document.querySelector('#events').appendChild(eventDiv);
+        });
+    </script>
+</body>
+
+</html>
